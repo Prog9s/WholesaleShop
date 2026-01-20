@@ -1,0 +1,59 @@
+﻿@using WholesaleShop.Models.Entities
+@model Payment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Payment</h1>
+
+<form method="post" asp-action="Create" >
+    @Html.AntiForgeryToken()
+    
+    <div class="mb-3">
+        <label asp-for="PaymentDate" class="form-label"></label>
+        <input asp-for="PaymentDate" name="PaymentDate" class="form-control" />
+        <span asp-validation-for="PaymentDate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Type" class="form-label"></label>
+        <select asp-for="Type" name="Type" class="form-control"
+                asp-items="Html.GetEnumSelectList<WholesaleShop.Models.Entities.PaymentType>()">
+            <option value="">-- Choose Type --</option>
+        </select>
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Amount" class="form-label"></label>
+        <input asp-for="Amount" name="Amount" class="form-control" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Customer" class="form-label">Customer</label>
+        <select asp-for="CustomerId" name="CustomerId" class="form-control" asp-items="@ViewBag.Customers">
+            <option value="">-- Select Customer --</option>
+        </select>
+        <span asp-validation-for="CustomerId"  class="text-danger"></span>
+    </div>
+
+    @* FK Suppliers *@
+    <div class="mb-3">
+        <label asp-for="Supplier" class="form-label">Supplier</label>
+        <select asp-for="SupplierId" name="SupplierId" class="form-control" asp-items="@ViewBag.Suppliers">
+            <option value="">-- Select Supplier --</option>
+        </select>
+        <span asp-validation-for="SupplierId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Notes" class="form-label"></label>
+        <textarea asp-for="Notes" name="Notes" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Save</button>
+    <a asp-action="Index" class="btn btn-dark">Back</a>
+</form>
+
+

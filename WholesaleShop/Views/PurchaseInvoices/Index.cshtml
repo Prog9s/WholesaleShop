@@ -1,0 +1,50 @@
+﻿@using WholesaleShop.Models.Entities
+@model IEnumerable<PurchaseInvoice>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>PurchaseInvoices</h1>
+<div class="container">
+    <div class="text-end">
+        <a asp-controller="PurchaseInvoices" asp-action="Create" class="btn btn-outline-primary">Add New</a>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CreatedAt</th>
+                <th>InvoiceNumber</th>
+                <th>InvoiceDate</th>
+                <th>TotalAmount</th>
+                <th>PaidAmount</th>
+                <th>RaminingAmount</th>
+                <th>Supplier</th>
+                <th>Notes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var purchase in Model)
+            {
+                <tr>
+                    <td>@purchase.Id</td>
+                    <td>@purchase.CreatedAt</td>
+                    <td>@purchase.InvoiceNumber</td>
+                    <td>@purchase.InvoiceDate</td>
+                    <td>@purchase.TotalAmount</td>
+                    <td>@purchase.PaidAmount</td>
+                    <td>@purchase.RaminingAmount</td>
+                    <td>@purchase.Supplier?.Name</td>
+                    <td>@purchase.Notes</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-Uid="@purchase.Uid" class="btn btn-outline-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-Uid="@purchase.Uid" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

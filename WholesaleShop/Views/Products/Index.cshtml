@@ -1,0 +1,46 @@
+﻿@using WholesaleShop.Models.Entities
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Products</h1>
+
+<div class="container">
+    <div class="text-end">
+        <a asp-controller="Products" asp-action="Create" class="btn btn-outline-primary">Add New</a>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CreatedAt</th>
+                <th>Name</th>
+                <th>Code</th>
+                <th>UnitPrice</th>
+                <th>CostPrice</th>
+                <th>StockQuantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var Prod in Model)
+            {
+                <tr>
+                    <td>@Prod.Id</td>
+                    <td>@Prod.CreatedAt</td>
+                    <td>@Prod.Name</td>
+                    <td>@Prod.Code</td>
+                    <td>@Prod.UnitPrice</td>
+                    <td>@Prod.CostPrice</td>
+                    <td>@Prod.StockQuantity</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-Uid="@Prod.Uid" class="btn btn-outline-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-Uid="@Prod.Uid" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

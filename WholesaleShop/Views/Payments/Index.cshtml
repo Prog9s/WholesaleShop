@@ -1,0 +1,56 @@
+﻿@using WholesaleShop.Models.Entities
+@model IEnumerable<Payment>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Payments</h1>
+<div class="container">
+    <div class="text-end">
+        <a asp-controller="Payments" asp-action="Create" class="btn btn-outline-primary">Add New</a>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>PaymentDate</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Customer</th>
+                <th>Supplier</th>
+                <th>Notes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var Supp in Model)
+            {
+                <tr>
+                    <td>@Supp.Id</td>
+                    <td>@Supp.PaymentDate</td>
+                    @* <td>@Supp.Type</td> *@
+                    <td>
+                        @if (Supp.Type == PaymentType.ToCustomer)
+                        {
+                            <span class="badge bg-success">Customer</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-info text-dark">Supplier</span>
+                        }
+                    </td>
+                    <td>@Supp.Amount</td>
+                    <td>@Supp.Customer?.Name</td>
+                    <td>@Supp.Supplier?.Name</td>
+                    <td>@Supp.Notes</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-Uid="@Supp.Uid" class="btn btn-outline-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-Uid="@Supp.Uid" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

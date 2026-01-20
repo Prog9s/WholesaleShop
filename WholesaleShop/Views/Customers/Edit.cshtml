@@ -1,0 +1,45 @@
+﻿@using WholesaleShop.Models.Entities
+@model Customer
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Customer</h1>
+<form method="post" asp-action="Edit">
+    @Html.AntiForgeryToken()
+    <input asp-for="Uid" name="Uid" class="form-control" />
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" name="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Phone" class="form-label"></label>
+        <input asp-for="Phone" name="Phone" class="form-control" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" name="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Address" class="form-label"></label>
+        <input asp-for="Address" name="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CurrentBalance" class="form-label"></label>
+        <input asp-for="CurrentBalance" name="CurrentBalance" class="form-control" />
+        <span asp-validation-for="CurrentBalance" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary">Update</button>
+    <a asp-action="Index" class="btn btn-dark">Back</a>
+</form>
+

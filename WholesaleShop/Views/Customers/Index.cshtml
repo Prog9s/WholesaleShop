@@ -1,0 +1,44 @@
+﻿@using WholesaleShop.Models.Entities
+@model IEnumerable<Customer>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>CurrentBalance</h1>
+
+<div class="container">
+    <div class="text-end">
+        <a asp-controller="Customers" asp-action="Create" class="btn btn-outline-primary">Add New</a>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>CurrentBalance</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var Cust in Model)
+            {
+                <tr>
+                    <td>@Cust.Id</td>
+                    <td>@Cust.Name</td>
+                    <td>@Cust.Phone</td>
+                    <td>@Cust.Email</td>
+                    <td>@Cust.Address</td>
+                    <td>@Cust.CurrentBalance</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-Uid="@Cust.Uid" class="btn btn-outline-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-Uid="@Cust.Uid" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,56 @@
+﻿@using WholesaleShop.Models.Entities
+@model Payment
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete Payment</h1>
+
+<form method="post" asp-action="Delete" >
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Uid" />
+
+    <div class="mb-3">
+        <label asp-for="PaymentDate" class="form-label"></label>
+        <input asp-for="PaymentDate" disabled name="PaymentDate" class="form-control" />
+        <span asp-validation-for="PaymentDate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Type" class="form-label"></label>
+        <select asp-for="Type" name="Type" disabled class="form-control"
+                asp-items="Html.GetEnumSelectList<WholesaleShop.Models.Entities.PaymentType>()">
+            <option value="">-- Choose Type --</option>
+        </select>
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Amount" class="form-label"></label>
+        <input asp-for="Amount" name="Amount" disabled class="form-control" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Customer" class="form-label"></label>
+        <select asp-for="CustomerId" name="CustomerId" disabled class="form-control" asp-items="@ViewBag.Customers">
+            <option value="">-- Select Customer --</option>
+        </select>
+        <span asp-validation-for="CustomerId" class="text-danger"></span>
+    </div>
+    @* FK Suppliers *@
+    <div class="mb-3">
+        <label asp-for="Supplier" class="form-label"></label>
+        <select asp-for="SupplierId" name="SupplierId" disabled class="form-control" asp-items="@ViewBag.Suppliers">
+            <option value="">-- Select Supplier --</option>
+        </select>
+        <span asp-validation-for="SupplierId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Notes" class="form-label"></label>
+        <textarea asp-for="Notes" name="Notes" disabled class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-dark">Back</a>
+</form>

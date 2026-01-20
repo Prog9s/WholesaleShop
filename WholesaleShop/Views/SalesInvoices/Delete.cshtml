@@ -1,0 +1,59 @@
+﻿@using WholesaleShop.Models.Entities
+@model SalesInvoice
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete SalesInvoices </h1>
+<form method="post" asp-action="Delete">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Uid" />
+
+
+    <div class="mb-3">
+        <label asp-for="CreatedAt" class="form-label"></label>
+        <input asp-for="CreatedAt" name="CreatedAt" disabled class="form-control" />
+        <span asp-validation-for="CreatedAt" class="text-danger"></span>
+    </div>
+
+
+    <div class="mb-3">
+        <label asp-for="InvoiceDate" class="form-label"></label>
+        <input asp-for="InvoiceDate" name="InvoiceDate" disabled class="form-control" />
+        <span asp-validation-for="InvoiceDate" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="TotalAmount" class="form-label"></label>
+        <input asp-for="TotalAmount" name="TotalAmount" disabled class="form-control" />
+        <span asp-validation-for="TotalAmount" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PaidAmount" class="form-label"></label>
+        <input asp-for="PaidAmount" name="PaidAmount" disabled class="form-control" />
+        <span asp-validation-for="PaidAmount" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="RaminingAmount" class="form-label"></label>
+        <input asp-for="RaminingAmount" name="RaminingAmount" disabled class="form-control" />
+        <span asp-validation-for="RaminingAmount" class="text-danger"></span>
+    </div>
+
+
+    @* FK Suppliers *@
+    <div class="mb-3">
+        <label asp-for="Customer" class="form-label">Customer</label>
+        <select asp-for="CustomerId" name="CustomerId" disabled class="form-control" asp-items="@ViewBag.Customers">
+            <option value="">-- Select Customer --</option>
+        </select>
+        <span asp-validation-for="CustomerId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Notes" class="form-label"></label>
+        <textarea asp-for="Notes" name="Notes" disabled class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Save</button>
+    <a asp-action="Index" class="btn btn-dark">Back</a>
+</form>
+
