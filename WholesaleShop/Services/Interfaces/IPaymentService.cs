@@ -10,6 +10,8 @@ namespace WholesaleShop.Services.Interfaces
         bool Create(Payment payment);
         bool Update(string Uid, Payment payment);
         bool Delete(string Uid);
+        bool DeleteByUid(string Uid);
+
         IEnumerable<Customer> GetCustomers();
         IEnumerable<Supplier> GetSuppliers();
 

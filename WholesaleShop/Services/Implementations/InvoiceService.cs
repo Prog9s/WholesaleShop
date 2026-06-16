@@ -80,7 +80,10 @@ namespace WholesaleShop.Services.Implementations
 
         public IEnumerable<SalesInvoice> GetAllSalesInvoices()
         {
-            return _unitOfWork._SalesInvoiceRepository.GetAll(p => p.Customer);
+            return _unitOfWork._SalesInvoiceRepository.GetAll(
+                p => p.Customer,
+                p => p.SalesInvoiceItems
+                );
         }
 
         public SalesInvoice? GetSalesInvoiceByUid(string Uid)
@@ -102,7 +105,7 @@ namespace WholesaleShop.Services.Implementations
                 _unitOfWork.Save();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
                 // يفضل تسجيل الخطأ هنا (Logging)
                 return false;
@@ -141,6 +144,25 @@ namespace WholesaleShop.Services.Implementations
         public IEnumerable<Supplier> GetSuppliers()
         {
             return _unitOfWork._SupplierRepository.GetAll();
+        }
+
+        public bool DeleteByUid(string Uid)
+        {
+            var salesInvoice = _unitOfWork._SalesInvoiceRepository.GetByUid(Uid);
+            if (salesInvoice != null)
+            {
+                _unitOfWork._SalesInvoiceRepository.Delete(salesInvoice.Id);
+                _unitOfWork.Save();
+                return true;
+            }
+            var purchaseInvoice = _unitOfWork._PurchaseInvoiceRepository.GetByUid(Uid);
+            if (purchaseInvoice != null)
+            {
+                _unitOfWork._PurchaseInvoiceRepository.Delete(purchaseInvoice.Id);
+                _unitOfWork.Save();
+                return true;
+            }
+            return false; // لم يتم العثور على أي فاتورة بهذا الـ Uid
         }
     }
 }

@@ -9,5 +9,7 @@ namespace WholesaleShop.Services.Interfaces
         bool Create(Supplier supplier);
         bool Update(string Uid, Supplier supplier);
         bool Delete(string Uid);
+        bool DeleteByUid(string Uid);
+
     }
 }

@@ -80,6 +80,17 @@ namespace WholesaleShop.Services.Implementations
                 p => p.Supplier
                 );
         }
+            public bool DeleteByUid(string Uid)
+            {
+                var payment = _unitOfWork._PaymentRepository.GetByUid(Uid);
+                if (payment == null)
+                {
+                    return false;
+                }
+                _unitOfWork._PaymentRepository.Delete(payment.Id);
+                _unitOfWork.Save();
+                return true;
+        }
     }
 }
 

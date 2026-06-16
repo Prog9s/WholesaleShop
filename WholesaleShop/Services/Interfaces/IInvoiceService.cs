@@ -8,6 +8,7 @@ namespace WholesaleShop.Services.Interfaces
         bool CreateSalesInvoice(SalesInvoice invoice);
         bool UpdateSalesInvoice(string Uid, SalesInvoice invoice);
         bool DeleteSales(string Uid);
+
         IEnumerable<PurchaseInvoice> GetAllPurchaseInvoices();
         PurchaseInvoice? GetPurchaseInvoiceByUid(string Uid);
         bool CreatePurchaseInvoice(PurchaseInvoice invoice);
@@ -15,5 +16,7 @@ namespace WholesaleShop.Services.Interfaces
         bool DeletePurchase(string Uid);
         IEnumerable<Customer> GetCustomers();
         IEnumerable<Supplier> GetSuppliers();
+        bool DeleteByUid(string Uid);
+
     }
 }

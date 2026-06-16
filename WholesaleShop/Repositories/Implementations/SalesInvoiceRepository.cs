@@ -16,6 +16,7 @@ namespace WholesaleShop.Repositories.Implementations
         {
             return _context.SalesInvoices
                           .Include(C => C.Customer)
+                          .Include(S => S.SalesInvoiceItems)
                           .ToList();
         }
     

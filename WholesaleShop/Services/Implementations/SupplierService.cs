@@ -57,6 +57,17 @@ namespace WholesaleShop.Services.Implementations
             return true;
         }
 
+        public bool DeleteByUid(string Uid)
+        {
+            var supplier = _unitOfWork._SupplierRepository.GetByUid(Uid);
+            if (supplier == null)
+            {
+                return false;
+            }
+            _unitOfWork._SupplierRepository.Delete(supplier.Id);
+            _unitOfWork.Save();
+            return true;
+        }
     }
 
 }

@@ -56,5 +56,16 @@ namespace WholesaleShop.Services.Implementations
             _unitOfWork.Save();
             return true;
         }
+        public bool DeleteByUid(string Uid)
+            {
+                var cust = _unitOfWork._CustomerRepository.GetByUid(Uid);
+                if (cust == null)
+                {
+                    return false;
+                }
+                _unitOfWork._CustomerRepository.Delete(cust.Id);
+                _unitOfWork.Save();
+                return true;
+        }
     }
 }
