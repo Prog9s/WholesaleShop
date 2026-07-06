@@ -105,7 +105,7 @@ namespace WholesaleShop_ASP_API.Controllers
                     return success ? Ok("تم حفظ الفاتورة وعناصرها بنجاح") : BadRequest("فشل الحفظ");
         }
         [HttpPut("{uid}")]
-        public ActionResult Update(string uid, [FromBody] Purchasedtos invoiceDtos)
+        public ActionResult Update(string uid, [FromBody] PurchaseInvoicesDtos invoiceDtos)
         {
             
             if (string.IsNullOrWhiteSpace(uid))
